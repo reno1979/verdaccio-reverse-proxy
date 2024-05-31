@@ -93,6 +93,7 @@ Be aware of disabling strict SSL in the `./npmrc` config file as explained [here
 
 ```sh
 npm config set strict-ssl false
+npm config set registry https://registry.npmjs.org
 ```
 
 ## Logs
