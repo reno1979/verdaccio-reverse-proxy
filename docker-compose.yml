@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:latest
+    container_name: verdaccio-https
+    ports:
+      - "4873:4873"
+    volumes:
+      - ./conf:/verdaccio/conf
+      - storage:/verdaccio/storage
+      - plugins:/verdaccio/plugins
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - verdaccio:verdaccio
+    environment:
+      DOMAINS: 'registry.npmjs.org -> http://verdaccio:4873'
+      STAGE: local
+      FORCE_RENEW: 'true'
+volumes:
+  storage:
+  plugins:
