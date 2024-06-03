@@ -96,6 +96,8 @@ npm config set strict-ssl false
 npm config set registry https://registry.npmjs.org
 ```
 
+By also explicitly setting the registry to `https://registry.npmjs.org` we maker sure that this address is used inside the `package-lock.json` file.
+
 ## Logs
 
 You can view the Verdaccio logs
@@ -177,6 +179,78 @@ We can now test our script:
 ```sh
 source ~/scripts/npm_registry_set.sh
 ```
+
+## Undo Changes
+
+If you want to undo the changes made by following the instructions in this guide, you can follow these steps:
+
+### Step 1: Remove Docker Containers
+
+First, navigate to the project directory and stop the Docker containers:
+
+```sh
+cd $PROJECT_DIR
+docker compose down
+```
+
+### Step 2: Remove Docker Volumes
+
+If you want to remove the Docker volumes as well, you can do so with the following commands:
+
+```sh
+docker volume rm verdaccio-reverse-proxy_storage
+docker volume rm verdaccio-reverse-proxy_plugins
+```
+
+Please note that this will delete all data stored in the volumes.
+
+### Step 3: Revert Changes to the Hosts File
+
+To revert the changes made to the `/etc/hosts` file, you can use a text editor like `vi`:
+
+```sh
+sudo vi /etc/hosts
+```
+
+In the editor, find the line that contains `registry.npmjs.org` and the Docker host IP address, and delete it. Then, save and close the file.
+
+### Step 4: Unset Environment Variable
+
+If you've set the `VERDACCIO_REVERSE_PROXY_PROJECT_DIR` environment variable and want to unset it, you can do so with the following command:
+
+```sh
+unset VERDACCIO_REVERSE_PROXY_PROJECT_DIR
+```
+
+After following these steps, all changes made by following the instructions in this guide should be undone.
+
+### Step 5: Undo Automation in .bashrc
+
+If you've added commands to your .bashrc file to automatically start the Docker containers, you can undo this by removing those commands.
+
+1. Open your .bashrc file in a text editor:
+
+```sh 
+vi ~/.bashrc
+```
+
+2. Find the following lines:
+
+```sh
+export VERDACCIO_REVERSE_PROXY_PROJECT_DIR = <your project path>
+cd $VERDACCIO_REVERSE_PROXY_PROJECT_DIR
+docker compose up -d
+```
+
+3. Delete these lines, then save and close the file.
+
+4. To make the changes take effect, you can either close and reopen your terminal, or run the following command:
+
+```sh 
+source ~/.bashrc
+```
+
+After following these steps, the Docker containers will no longer start automatically when you open a new bash shell.
 
 ## Conclusion
 
