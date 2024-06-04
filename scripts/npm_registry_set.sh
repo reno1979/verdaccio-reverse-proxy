@@ -30,6 +30,13 @@ if ! grep -q "host.docker.internal" /etc/hosts; then
     echo "${DOCKER_HOST_IP} registry.npmjs.org" | sudo tee -a /etc/hosts > /dev/null
 fi
 
+# To be used in your project's Docker Compose files, to make sure the dockers use the local registry
+# Example Docker Compose yaml setting file entry
+# extra_hosts:
+#  - host.docker.internal:host-gateway
+#  - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
+export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}
+
 # Print how to view the Verdaccio logs
 echo "You can view the Verdaccio logs with the following command:"
 echo "docker logs -f verdaccio-https"
