@@ -73,7 +73,7 @@ extra_hosts:
   - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
 ```
 
-The `extra_hosts` to `registry.npmjs.org` addes a rule inside the Docker Container hosts file to make the address `registry.npmjs.org` point to the IP address of your local NPM registry, and has a fallback to the actual address `registry.npmjs.org` 
+The `extra_hosts` to `registry.npmjs.org` adds a rule inside the Docker Container hosts file to make the address `registry.npmjs.org` point to the IP address of your local NPM registry, and has a fallback to the actual address `registry.npmjs.org` 
 
 ## Usage
 
