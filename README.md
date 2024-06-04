@@ -52,14 +52,28 @@ echo "${DOCKER_HOST_IP} host.docker.internal" | sudo tee -a /etc/hosts > /dev/nu
 
 This script will add an entry to your `/etc/hosts` file, mapping the Docker host IP address to `host.docker.internal` and `registry.npmjs.org`.
 
-#### Tip: extra_hosts
+#### 2.1 Docker compose extra_hosts
 
-When you are not using Docker Desktop you might want to update your docker-compose.yml files to include the following setting:
+To be sure the Docker containers also use your local NPM registry, we need to point them to the correct IP address by adding a new rule inside their hosts file. 
+With the `extra_hosts` inside a Docker Compose yaml file we can.
+
+First we need to register the Docker Host IP address as an environment variable, we want  it to be available in each session so we place the following line inside `~/.bashrc`
+
+```sh
+DOCKER_HOST_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+
+echo "export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}" | tee -a ~/.bashrc > /dev/null
+``` 
+
+When you are not using Docker Desktop you might want to update your docker-compose.yml files to also include include the host.docker.internal setting:
 
 ```yaml
 extra_hosts:
   - host.docker.internal:host-gateway
+  - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
 ```
+
+The `extra_hosts` to `registry.npmjs.org` addes a rule inside the Docker Container hosts file to make the address `registry.npmjs.org` point to the IP address of your local NPM registry, and has a fallback to the actual address `registry.npmjs.org` 
 
 ## Usage
 
