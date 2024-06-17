@@ -110,11 +110,11 @@ npm config set strict-ssl false
 npm config set registry https://registry.npmjs.org
 ```
 
-By also explicitly setting the registry to `https://registry.npmjs.org` we maker sure that this address is used inside the `package-lock.json` file.
+By also explicitly setting the registry to `https://registry.npmjs.org` we make sure that this address is used inside the `package-lock.json` file.
 
 ## Logs
 
-You can view the Verdaccio logs
+You can view the Verdaccio logs with:
 
 ```sh
 docker logs -f verdaccio-https
@@ -122,10 +122,13 @@ docker logs -f verdaccio-https
 
 ## Login
 
-If you want to login into the Verdaccio instance created via these Docker Examples, please try:
+If you want to log into the Verdaccio instance created via these Docker Examples, please try:
 
-Username: bor
-Password: bor
+### Credentials
+
+| Username | Password |
+|----------|----------|
+| bor      | bor      |
 
 ### Change credentials
 
