@@ -9,6 +9,7 @@ services:
       - ./conf:/verdaccio/conf
       - storage:/verdaccio/storage
       - plugins:/verdaccio/plugins
+      - ./ssl:/verdaccio/ssl
   https-portal:
     image: steveltn/https-portal:1
     ports:
@@ -17,7 +18,7 @@ services:
     links:
       - verdaccio:verdaccio
     environment:
-      DOMAINS: 'registry.npmjs.org -> http://verdaccio:4873'
+      DOMAINS: 'registry.npmjs.org -> https://verdaccio:4873'
       STAGE: local
       FORCE_RENEW: 'true'
 volumes:
