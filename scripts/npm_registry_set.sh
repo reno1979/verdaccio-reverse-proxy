@@ -37,7 +37,7 @@ export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}
 
 # Tell node about our self signed certificate
 export NODE_EXTRA_CA_CERTS="${PROJECT_DIR}/ssl/certificate.pem"
-export NPM_CONFIG_STRICT_SSL=false
+export NPM_CONFIG_STRICT_SSL=true
 export NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 
 # Print how to view the Verdaccio logs
