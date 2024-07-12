@@ -9,6 +9,7 @@ services:
       - ./conf:/verdaccio/conf
       - storage:/verdaccio/storage
       - plugins:/verdaccio/plugins
+      - ./ssl:/verdaccio/ssl
   https-portal:
     image: steveltn/https-portal:1
     ports:

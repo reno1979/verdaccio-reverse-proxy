@@ -27,3 +27,9 @@ packages:
 
 logs:
   - { type: stdout, format: pretty, level: trace }
+
+https:
+  enable: true
+  key: /verdaccio/ssl/verdaccio-key.pem
+  cert: /verdaccio/ssl/verdaccio-cert.pem
+  ca: null

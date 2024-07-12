@@ -17,8 +17,6 @@ fi
 
 # Start the containers
 docker compose up -d
-
-export NPM_CONFIG_STRICT_SSL=false
  
 # Get the IP address of the docker0 network interface
 DOCKER_HOST_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
@@ -36,6 +34,11 @@ fi
 #  - host.docker.internal:host-gateway
 #  - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
 export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}
+
+# Tell node about our self signed certificate
+export NODE_EXTRA_CA_CERTS="${PROJECT_DIR}/ssl/verdaccio-cert.pem"
+export NPM_CONFIG_STRICT_SSL=false
+export NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 
 # Print how to view the Verdaccio logs
 echo "You can view the Verdaccio logs with the following command:"
