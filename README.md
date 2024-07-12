@@ -172,7 +172,7 @@ and at the end of the file place these lines:
 # The URL of your custom npm registry
 # execute the script npm_registry_set.sh inside the home folder
 EXPORT VERDACCIO_REVERSE_PROXY_PROJECT_DIR=~/projects/verdaccio-reverse-proxy
-~/projects/verdaccio-reverse-proxy/scripts/npm_registry_set.sh
+source ~/projects/verdaccio-reverse-proxy/scripts/npm_registry_set.sh
 ```
 
 Make sure the `/projects/verdaccio-reverse-proxy/` part matches the actual location on your machine, and set the environment variable `VERDACCIO_REVERSE_PROXY_PROJECT_DIR` 

@@ -18,7 +18,7 @@ services:
     links:
       - verdaccio:verdaccio
     environment:
-      DOMAINS: 'registry.npmjs.org -> https://verdaccio:4873'
+      DOMAINS: 'registry.npmjs.org -> http://verdaccio:4873'
       STAGE: local
       FORCE_RENEW: 'true'
 volumes:
