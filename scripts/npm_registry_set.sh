@@ -37,6 +37,9 @@ fi
 #  - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
 export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}
 
+# Tell node about our self signed certificate
+export NODE_EXTRA_CA_CERTS="${PROJECT_DIR}/ssl/certificate.pem"
+
 # Print how to view the Verdaccio logs
 echo "You can view the Verdaccio logs with the following command:"
 echo "docker logs -f verdaccio-https"
