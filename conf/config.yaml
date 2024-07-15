@@ -25,7 +25,7 @@ packages:
     publish: $all
     proxy: npmjs
 
-logs:
+log:
   - { type: stdout, format: pretty, level: trace }
 
 https:
