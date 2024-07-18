@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the current directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 # Use the value of the environment variable VERDACCIO_REVERSE_PROXY_PROJECT_DIR, or set a default value if it's not set
 PROJECT_DIR=${VERDACCIO_REVERSE_PROXY_PROJECT_DIR:-~/projects/verdaccio-reverse-proxy}
 
@@ -37,8 +40,11 @@ fi
 #  - registry.npmjs.org:${LOCAL_NPM_REGISTRY_IP_ADDRESS:-registry.npmjs.org}
 export LOCAL_NPM_REGISTRY_IP_ADDRESS=${DOCKER_HOST_IP}
 
+cd $DIR
+
 # Print how to view the Verdaccio logs
 echo "You can view the Verdaccio logs with the following command:"
 echo "docker logs -f verdaccio-https"
 echo "------------------------------"
 echo "registry.npmjs.org is now redirected to your local registry"
+
