@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Inside npm_registry_set.sh, at the top
+if [ "$NPM_REGISTRY_ALREADY_SETUP" = "true" ]; then
+    exit 0
+fi
+export NPM_REGISTRY_ALREADY_SETUP=true
+
 # Use the value of the environment variable VERDACCIO_REVERSE_PROXY_PROJECT_DIR, or set a default value if it's not set
 PROJECT_DIR=${VERDACCIO_REVERSE_PROXY_PROJECT_DIR:-~/projects/verdaccio-reverse-proxy}
 
