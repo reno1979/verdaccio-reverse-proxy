@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Use the value of the environment variable VERDACCIO_REVERSE_PROXY_PROJECT_DIR, or set a default value if it's not set
+PROJECT_DIR=${VERDACCIO_REVERSE_PROXY_PROJECT_DIR:-~/projects/verdaccio-reverse-proxy}
+
 # Navigate to the directory containing the docker-compose.yaml file
-cd ~/projects/verdaccio-docker-compose
+cd $PROJECT_DIR
 
 # Define container name
 CONTAINER_NAME="verdaccio-https"
